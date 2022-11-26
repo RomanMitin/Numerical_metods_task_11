@@ -1,0 +1,23 @@
+{
+  "metod_param": {
+    "a": 0,
+    "b": 2,
+    "h0": 0.01,
+    "x": 0,
+    "v": 3,
+    "max_step": 5000,
+
+    "error_control": "Up_and_Down",
+    "e_up": 1e-3,
+    "e_down": 1e-10,
+    "e_gr": 1e-4
+  },
+  "system_param": {
+    "k": 175,
+    "f": 0.3,
+    "m": 4.5,
+    "f*": 1,
+    "resting_friction_eps": 1e-2
+  }
+
+}
