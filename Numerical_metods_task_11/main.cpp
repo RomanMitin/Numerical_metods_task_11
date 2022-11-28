@@ -43,10 +43,24 @@ int main(int argc, char* argv[])
 
 	calc(runge_khuta_3_order, state);
 
-	print_refence(state);
+	std::string output_f_name = "output.csv";
 
+	if (argc >= 3)
+	{
+		output_f_name = argv[2];
+	}
 
-	print_steps(state.step_info_vec);
+	std::ofstream out(output_f_name);
+
+	print_refence(out, state);
+
+	print_steps(out, state.step_info_vec);
+	
+	out.close();
+
+	system((std::string("start excel ") + output_f_name).c_str());
+
+	while (1);
 
 	return 0;
 }

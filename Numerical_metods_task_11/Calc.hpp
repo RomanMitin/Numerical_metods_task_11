@@ -76,6 +76,8 @@ void calc(metod_t metod, state_t& state)
 
 	while (std::abs(b - t) >= e_gr && step_count < max_step && t <= b && !resting_friction_flag)
 	{
+		h = std::min((b - t) / 2.0, h);
+
 		uint32_t step_dec = 0, step_grow = 0;
 		std::valarray<double> tmp_v = v;
 
@@ -141,11 +143,11 @@ void calc(metod_t metod, state_t& state)
 		step.t = t;
 		step.v = v;
 		step.S = abs(S);
-		v += S * (1ull << metod_order);
+		//v += S * (1ull << metod_order);
 		step.v_fin = v;
 
-		step.step_decrease = step_dec;
-		step.step_grow = step_grow;
+		steps.back().step_decrease = step_dec;
+		steps.back().step_grow = step_grow;
 
 		steps.push_back(step);
 
@@ -155,7 +157,7 @@ void calc(metod_t metod, state_t& state)
 		step_count++;
 	}
 
-	steps.back().h = h;
+	steps.back().h = 0;
 	reference.N = step_count;
 	reference.step_left = b - t;
 	reference.step_decrease = step_dec_total;
